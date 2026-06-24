@@ -1,16 +1,3 @@
-/*const secreto = 37;
-let intento = number(prompt("Cuál es el número secreto?"));
-
-if(intento === secreto){
-    console.log("¡Genial Bro, el número es Correcto!.");
-    alert("¡Genial Bro, el número es Correcto!.");
-} else if(intento > secreto){   
-        console.log("El número es muy alto ");
-        alert("El número es muy alto ");
-} else {
-    console.log("El número es muy bajo ");
-    alert("El número es muy bajo ");
-}*/
 const inputIntento = document.getElementById("inputIntento");
 const btnAdivinar = document.getElementById("btnAdivinar");
 const mensaje = document.getElementById("mensaje");
@@ -18,6 +5,12 @@ const contador = document.getElementById("contador");
 const historial = document.getElementById("historial");
 const btnReiniciar = document.getElementById("btnReiniciar");
 const tarjeta = document.getElementById("game-card");
+
+inputIntento.addEventListener('keypress', function(evento) {
+  if (evento.key === 'Enter') {
+    verificarIntento();
+  }
+});
 
 console.log("Elementos encontrados:", inputIntento, tarjeta, mensaje);
 
@@ -37,10 +30,9 @@ console.log("(DEBUG)Número secreto:", numeroSecreto);
 function verificarIntento() {
     let valor = Number(inputIntento.value);
     if(isNaN(valor) || valor < 1 || valor > 100) {
-        mostrarMensaje("Por favor ingresa un número entre 1 y 100", "orange");
+        mostrarMensaje(" ⚠️ Por favor ingresa un número entre 1 y 100", "orange");
         return;
     }
-
 
     intentos++;
     contador.textContent = "Intentos: " + intentos;
@@ -48,16 +40,16 @@ function verificarIntento() {
     historialIntentos.push(valor);
     historial.textContent = "Historial: " + historialIntentos.join(", ");
     if(valor === numeroSecreto) {
-        mostrarMensaje("¡Felicidades! Has adivinado el número secreto.", "green");
+        mostrarMensaje("🎉¡Felicidades! Has adivinado el número secreto.", "green");
         btnAdivinar.disabled = true;
         btnReiniciar.style.display = "inline-block";
         tarjeta.style.borderColor = "green";
         tarjeta.style.boxShadow = "0 0 40px rgba(0,255,136,0.3)";
     }
     else if(valor > numeroSecreto) {
-            mostrarMensaje("Muy alto, intenta más bajo", "#ff6b6b");
+            mostrarMensaje("📈 Muy alto, intenta más bajo", "#ff6b6b");
          } else {
-            mostrarMensaje("Muy bajo, intenta más alto", "#4ecdc4");
+            mostrarMensaje("📉Muy bajo, intenta más alto", "#4ecdc4");
         }
         inputIntento.value = "";
         inputIntento.focus();
@@ -80,7 +72,6 @@ function reiniciarJuego() {
 
     console.log("(DEBUG)Número secreto reiniciado:", numeroSecreto);
 }
-
 
 btnAdivinar.addEventListener("click", verificarIntento); 
 btnReiniciar.addEventListener("click", reiniciarJuego);
