@@ -160,6 +160,22 @@
 
     }
  
+    .historial {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 20px;
+      min-height: 30px;
+    }
+    
+    .guess-pill {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
     #mensaje {
 
       font-size: 24px;
@@ -215,12 +231,13 @@
  
     <p id="mensaje"></p>
 <p id="contador">Intentos: 0</p>
-<p id="historial">Historial: </p>
+<div id="historial" class="historial"></div>
  
     <button id="btnReiniciar" style="display: none;">
 
       🔄 Jugar de nuevo
 </button>
+<p id="mejorpuntaje">Mejor Puntaje: 0 </p>
 </div>
  
   <script src="script.js"></script>
