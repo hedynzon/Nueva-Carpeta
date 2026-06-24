@@ -48,8 +48,10 @@ function verificarIntento() {
     }
     else if(valor > numeroSecreto) {
             mostrarMensaje("📈 Muy alto, intenta más bajo", "#ff6b6b");
+            mostrarMensaje(obtenerPista(valor, numeroSecreto), "#ff6b6b");
          } else {
             mostrarMensaje("📉Muy bajo, intenta más alto", "#4ecdc4");
+            mostrarMensaje(obtenerPista(valor, numeroSecreto), "#4ecdc4");  
         }
         inputIntento.value = "";
         inputIntento.focus();
@@ -71,6 +73,20 @@ function reiniciarJuego() {
     tarjeta.style.boxShadow = "0 8px 32px rgba(0,0,0,0.4)";
 
     console.log("(DEBUG)Número secreto reiniciado:", numeroSecreto);
+}
+
+function obtenerPista(intento, secreto) {
+  let diferencia = Math.abs(intento - secreto);
+
+  if (diferencia <= 5) {
+    return '🔥 ¡Muy cerca!';
+  } else if (diferencia <= 15) {
+    return '♨️ Caliente';
+  } else if (diferencia <= 30) {
+    return '🌤️ Tibio';
+  } else {
+    return '❄️ Frío';
+  }
 }
 
 btnAdivinar.addEventListener("click", verificarIntento); 
