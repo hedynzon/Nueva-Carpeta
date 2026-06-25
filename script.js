@@ -67,6 +67,7 @@ function verificarIntento() {
             inputIntentofocus();
     } else {
         mostrarMensaje("💀 Has agotado tus 10 intentos. El número secreto era: " + numeroSecreto, "red");
+        inputIntento.disabled = true;
         btnAdivinar.disabled = true;
         btnReiniciar.style.display = "inline-block";
         tarjeta.style.borderColor = "red";
